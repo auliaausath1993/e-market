@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dropship</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label style="margin-left: 8px;">Area</ion-label>
+    <ion-select placeholder="Pilih Area" [(ngModel)]="order.area_id" (ngModelChange)="check()">
+      <ion-select-option *ngFor="let item of dataOngkir" value="{{item.id}}"><span style="font-size: 14px;">{{item.area}}</span></ion-select-option>
+    </ion-select>
+  </ion-item>
+  <br>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>Detail Pengiriman</ion-label>
+      <ion-button fill="outline" slot="end" (click)="presentModal()" *ngIf="addressSelected == null">
+        Pilih Alamat Pengiriman
+      </ion-button>
+    </ion-item>
+  
+    <ion-card-content *ngIf="addressSelected">
+      <h2>{{addressSelected.recipient_name}}</h2>
+      <h3>{{addressSelected.address}}</h3>
+    </ion-card-content>
+    <ion-card-content *ngIf="addressSelected == null">
+      Sertakan alamat dengan benar agar memudahkan untuk pengiriman product
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <div *ngFor="let item of dataOrder;let i = index">
+      <div class="row pl-1">
+        <div>{{i + 1}}. {{item.prod_name}} - {{item.variant}}</div>
+      </div>
+      <div class="row pr-1">
+        {{item.qty | number : '1.0-4'}} x {{item.price | number : '1.0-4'}}
+        <span> {{(item.price * item.qty ) | number : '1.0-4'}}
+        </span>
+      </div>
+    </div>
+  </ion-card>
+  <!-- <ion-item>
+    <ion-label>Ekspedisi</ion-label>
+    <ion-select placeholder="Pilih Ekspedisi">
+      <ion-select-option value="ekspedisi">JNE</ion-select-option>
+      <ion-select-option value="jnt">J&T</ion-select-option>
+      <ion-select-option value="lion">LION</ion-select-option>
+      <ion-select-option value="non">Non Ekspedisi</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+  
+  <ion-card *ngIf="areaSelected != undefined">
+    <ion-item>
+      <ion-label>Ongkir : <span>Rp. {{areaSelected.fee | number:'1.0-0'}}</span></ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Subtotal : <span>Rp. {{totalAmount | number:'1.0-0'}}</span></ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Total : <span>Rp. {{order.total | number:'1.0-0'}}</span></ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Total QTY : <span>{{order.totalQty}} pcs (1.00 Kg)</span></ion-label>
+    </ion-item>
+  </ion-card>
+
+<!-- Expand -->
+<ion-button expand="block" style="color: white;" (click)="dropship_test()">Process</ion-button>
+
+</ion-content>

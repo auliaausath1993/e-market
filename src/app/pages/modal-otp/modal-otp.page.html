@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="modalDismiss()">
+        <ion-icon
+          color="dark"
+          slot="icon-only"
+          name="close-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+    <ion-grid class="flex-container ion-padding ion-text-center">
+      <ion-row>
+        <ion-col class="ion-padding-end">
+          <img src="assets/shapes/accepted.svg" width="160">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h5>Masukkan Kode OTP</h5>
+          <p>Masukkan kode OTP yang telah kami kirim ke email anda</p>
+            <ion-row>
+              <ion-col>
+              <ion-input [(ngModel)]="otp_a" autofocus="true" class="otp-input" maxLength="1"></ion-input>
+              <ion-input [(ngModel)]="otp_b" class="otp-input" maxLength="1"></ion-input>
+              <ion-input [(ngModel)]="otp_c" class="otp-input" maxLength="1"></ion-input>
+              <ion-input [(ngModel)]="otp_d" class="otp-input" maxLength="1"></ion-input>
+              <ion-input [(ngModel)]="otp_e" class="otp-input" maxLength="1"></ion-input>
+              <ion-input [(ngModel)]="otp_f" class="otp-input" maxLength="1"></ion-input>
+              </ion-col>
+            </ion-row>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            class="action-button ion-margin-bottom"
+            expand="block"
+            fill="solid"
+            color="primary"
+            type="button"
+            (click)="verifOTP()">
+          <div class="button-text">
+            <span>Verifikasi</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+          </ion-button>
+          <a class="link" (click)="resendOTP()">Resend OTP</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+</ion-content>

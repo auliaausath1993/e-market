@@ -1,0 +1,40 @@
+<ion-item lines="none">
+  <ion-thumbnail slot="start">
+      <img [src]="item?.image">
+  </ion-thumbnail>
+  <ion-label class="ion-no-margin">
+    <div class="title-container">
+      <div>
+        <!-- <p>{{ item.prod_name }}</p>
+        <span>{{ item.weight }}</span> -->
+      </div>
+        <ion-button
+        fill="clear"
+        size="small"
+        shape="round"
+        color="medium"
+        class="small-button"
+      >
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="buttons-container">
+      <ul>
+        <li>
+          <ion-button class="ion-no-padding" [disabled]="disable" fill="outline" size="small" shape="round" color="primary" (click)="decrease(item)">
+            <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+          </ion-button>
+        </li>
+        <!-- <li>{{ item.qty }}</li> -->
+        <li>
+          <ion-button class="ion-no-padding" fill="outline" size="small" shape="round" color="primary" (click)="increase(item)">
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </ion-button>
+        </li>
+      </ul>
+      <!-- <ion-text>{{ item.subtotal | currency:'Rp ':'symbol':'3.0' }}</ion-text> -->
+    </div>
+  </ion-label>
+</ion-item>
+

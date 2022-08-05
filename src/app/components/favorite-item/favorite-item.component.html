@@ -1,0 +1,15 @@
+<ion-item lines="none">
+  <ion-thumbnail slot="start">
+      <img [src]="item?.image">
+  </ion-thumbnail>
+  <ion-label>
+    <div class="title-container">
+      <div>
+        <p>{{ item.title }}</p>
+        <span>{{ item.subtitle }}</span>
+      </div>
+      <ion-text>{{ item.price | currency }}</ion-text>
+    </div>
+  </ion-label>
+</ion-item>
+

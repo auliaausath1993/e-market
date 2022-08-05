@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addressForm">
+  <ion-item>
+    <ion-label>Penerima</ion-label>
+    <ion-input placeholder="Input Penerima" formControlName="recipient_name"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>No Telpon</ion-label>
+    <ion-input placeholder="Input No Telpon" formControlName="recipient_phone"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Alamat</ion-label>
+    <ion-input placeholder="Input Alamat" formControlName="address"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Kode POS</ion-label>
+    <ion-input placeholder="Input Kode POS" formControlName="postal_code"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Pengirim</ion-label>
+    <ion-input placeholder="Input Pengirim" formControlName="sender"></ion-input>
+  </ion-item>
+
+<ion-button expand="block" style="color: white;" [disabled]="!addressForm.valid" (click)="add_process()">Tambah Alamat</ion-button>
+
+  </form>
+
+  
+
+  <ion-card>
+    <ion-item *ngFor="let item of dataAddress" class="example-item" color="{{item == addressSelected ? 'primary':''}}" (click)="selectAddress(item)">
+      <ion-icon name="list" slot="start"></ion-icon>
+      {{item.address}} - {{item.recipient_phone}}
+    </ion-item>
+  </ion-card>
+</ion-content>

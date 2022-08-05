@@ -1,0 +1,19 @@
+<ion-card class="ion-no-margin">
+  <ion-card-title>
+    <p>{{ title }}</p>
+    <ion-button
+      fill="clear"
+      size="small"
+      shape="round"
+      color="dark"
+      (click)="open = !open"
+  >
+    <ion-icon slot="icon-only" [name]="open ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+  </ion-button>
+  </ion-card-title>
+  <ion-card-content *ngIf="open" class="ion-no-padding">
+    <ng-content>
+
+    </ng-content>
+  </ion-card-content>
+</ion-card>

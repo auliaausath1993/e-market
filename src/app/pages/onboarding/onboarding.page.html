@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true" class="background-opts" [ngStyle]="background">
+  <div class="container">
+    <ion-grid class="ion-padding-horizontal">
+      <ion-row class="ion-padding-vertical">
+        <ion-col size="9" class="ion-padding-vertical">
+         
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="ion-padding gradient flex-between">
+      <ion-row class="ion-padding-top">
+        <ion-col>
+          <ion-card class="ion-text-center">
+            <ion-card-title class="ion-padding-bottom"> Welcome to Ionic Grocery</ion-card-title>
+            <ion-card-content class="ion-padding-bottom">
+              <p>All your groceries needs and find low prices on high quality produce and products.</p>
+            </ion-card-content>
+          </ion-card>
+          <ion-button
+          (click)="signUp()"
+          class="action-button"
+          expand="block"
+          fill="solid"
+          color="primary"
+          type="button"
+        >
+          <div class="button-text">
+            <span>Get started</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+        </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

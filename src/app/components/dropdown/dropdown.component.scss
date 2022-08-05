@@ -1,0 +1,30 @@
+ion-card {
+  box-shadow: none !important;
+  border-top: 1px  #7c7c7c;
+
+  ion-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 18px;
+      color: #181725;
+    }
+
+    ion-button {
+        --border-radius: 50%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        width: 42px;
+        height: 42px;
+        --padding-start: 0;
+        --padding-end: 0;
+      }
+  }
+
+}

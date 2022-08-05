@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row class="ion-padding-vertical">
+      <ion-col size="8" class="ion-padding-vertical">
+        <h1 class="title">Welcome back</h1>
+        <ion-text class="mb">Enter your email and password for signing in.</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="input-label" position="stacked">Email Address</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          <div class="errors-container" *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+            <ng-container *ngIf="loginForm.get('email').errors.required">Email is required</ng-container>
+            <ng-container *ngIf="loginForm.get('email').errors.invalidEmail">Email is invalid</ng-container>
+          </div>
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="input-label" position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="errors-container" *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            <ng-container *ngIf="loginForm.get('password').errors.required">
+              Password is required
+            </ng-container>
+            <ng-container *ngIf="loginForm.get('password').errors.invalidPassword">
+              {{loginForm.get('password').errors.message}}
+            </ng-container>
+          </div>
+
+          <ion-button
+          [disabled]="loginForm.invalid"
+          class="action-button ion-margin-top"
+          expand="block"
+          fill="solid"
+          color="primary"
+          type="submit">
+          <div class="button-text">
+            <span>Sign In</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+        </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center ion-padding-bottom">
+        <a class="link" [routerLink]="">Forgot password?</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

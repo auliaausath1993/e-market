@@ -1,0 +1,108 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row>
+      <ion-col size="9">
+        <h1 class="title">Create an account</h1>
+        <ion-text class="mb">
+          Create your account and start shopping today.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="signForm" (ngSubmit)="signUp()">
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="input-label" position="stacked">Full Name</ion-label>
+            <ion-input type="text" formControlName="fullName">
+            </ion-input>
+          </ion-item>
+          <div class="errors-container" *ngIf="signForm.get('fullName').invalid && (signForm.get('fullName').dirty || signForm.get('fullName').touched)">
+            <ng-container *ngIf="signForm.get('fullName').errors.required">Full Name is required</ng-container>
+          </div>
+
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="input-label" position="stacked">Email Address</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          <div class="errors-container" *ngIf="signForm.get('email').invalid && (signForm.get('email').dirty || signForm.get('email').touched)">
+            <ng-container *ngIf="signForm.get('email').errors.required">Email is required</ng-container>
+            <ng-container *ngIf="signForm.get('email').errors.invalidEmail">Email is invalid</ng-container>
+          </div>
+
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="input-label" position="stacked">Phone Number</ion-label>
+            <ion-input type="text" formControlName="phoneNumber">
+            </ion-input>
+          </ion-item>
+          <div class="errors-container" *ngIf="signForm.get('phoneNumber').invalid && (signForm.get('phoneNumber').dirty || signForm.get('phoneNumber').touched)">
+            <ng-container *ngIf="signForm.get('phoneNumber').errors.required">Phone Number is required</ng-container>
+          </div>
+
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="input-label" position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="errors-container" *ngIf="signForm.get('password').invalid && (signForm.get('password').dirty || signForm.get('password').touched)">
+            <ng-container *ngIf="signForm.get('password').errors.required">Password is required</ng-container>
+            <ng-container *ngIf="signForm.get('password').errors.invalidPassword">{{ signForm.get('password').errors.message }}</ng-container>
+          </div>
+
+          <ion-button
+            [disabled]="signForm.invalid"
+            class="action-button ion-margin-top"
+            expand="block"
+            fill="solid"
+            color="primary"
+            type="submit">
+          <div class="button-text">
+            <span>Sign Up</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center ion-no-padding"> Or </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          class="social-button"
+          expand="block"
+          fill="solid"
+          color="facebook" style="display: none;">
+        <div class="button-text" (click)="presentModal()">
+          <span>Continue with Facebook</span>
+          <ion-icon name="logo-facebook"></ion-icon>
+        </div>
+        </ion-button>
+
+        <ion-button
+          (click)="signInWithGoogle()"
+          class="social-button ion-margin-top"
+          expand="block"
+          fill="solid"
+          color="google">
+          <div class="button-text">
+            <span>Continue with Google</span>
+            <ion-icon name="logo-google"></ion-icon>
+          </div>
+        </ion-button>
+
+        <ion-button
+          (click)="signIn()"
+          class="social-button ion-margin-top"
+          expand="block"
+          fill="solid"
+          color="primary">
+          <div class="button-text">
+            <span>Sign In</span>
+            <ion-icon name="log-in-outline"></ion-icon>
+          </div>
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

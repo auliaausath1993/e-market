@@ -1,0 +1,12 @@
+.selectable-btn {
+    font-weight: 700;
+    --border-radius: 12px;
+    text-transform: initial;
+    max-height: 40px;
+  }
+  
+  ion-button.active {
+    --background: var(--ion-color-primary) !important;
+    --color: #fff;
+  }
+  

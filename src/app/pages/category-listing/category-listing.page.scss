@@ -1,0 +1,16 @@
+ion-searchbar {
+    --box-shadow: 0 !important;
+    --border-radius: 8px;
+    --background: var(--ion-color-light);
+    --color: var(--ion-color-medium);
+}
+
+ion-title {
+    font-weight: 700;
+}
+ion-item {
+    --inner-padding-end: 0;
+}
+ion-text {
+    font-weight: 600;
+}

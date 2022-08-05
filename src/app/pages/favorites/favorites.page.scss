@@ -1,0 +1,61 @@
+.action-button {
+    --border-radius: 12px;
+    --box-shadow: none !important;
+    height: 48px;
+  
+    span {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 22px;
+      text-transform: initial;
+      color: #ffffff;
+    }
+  
+    .button-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 8px;
+  
+      ion-icon {
+          font-size: 20px;
+          color: #ffffff;
+      }
+    }
+  }
+  
+  ion-footer {
+    ion-toolbar {
+      --background: transparent !important;
+    }
+  }
+  
+  ion-title {
+    font-weight: 700;
+  }
+  
+  ion-item-option {
+    background: none;
+  }
+  
+  .trash-button {
+    --border-radius: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 42px;
+    height: 42px;
+  }
+  
+  .item-options-ios  {
+    border-bottom-style: none;
+  }
+  
+  .ios > .trash-button {
+    width: auto !important;
+    height: auto !important;
+    --padding-start: 0;
+    --padding-end: 0;
+  }

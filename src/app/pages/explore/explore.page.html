@@ -1,0 +1,36 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Explore
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Explore</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid class="ion-padding-horizontal">
+    <!-- <ion-row class="ion-no-padding">
+      <ion-col class="ion-padding-vertical">
+        <ion-searchbar animated class="ion-no-padding"></ion-searchbar>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col class="ion-no-padding" size="6" *ngFor="let item of listExplore">
+        <!-- <app-product-category [category]="item" (click)="gotoCategory(item.id, item.name)"></app-product-category> -->
+        <ion-card (click)="gotoCategory(item.id, item.name)" [ngClass]="item.color" class="ion-no-margin">
+          <ion-card-header>
+            <img [src]="item.thumb">
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title>{{item.name}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

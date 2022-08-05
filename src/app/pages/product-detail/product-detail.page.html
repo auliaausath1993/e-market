@@ -1,0 +1,134 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding green">
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/shop"></ion-back-button>
+          </ion-buttons>
+          <ion-title></ion-title>
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon
+                color="dark"
+                slot="icon-only"
+                name="share-social-outline"
+              ></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-slides [pager]="true" [options]="imageConfig">
+        <ion-slide *ngFor="let item of [1,1,1]">
+          <ion-col class="ion-padding ion-margin-bottom">
+            <img src="{{ product?.image }}" />
+          </ion-col>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ion-col size="12" class="ion-no-padding">
+        <div class="title-container">
+          <div class="text-container">
+            <p>{{ product?.item_name }}</p>
+            <!-- <span>{{ product?.price | currency:'Rp ':'symbol':'3.0'}}</span> -->
+          </div>
+          <ion-button
+            (click)="favorite()"
+            class="circle-btn"
+            slot="end"
+            fill="clear"
+            size="small"
+            shape="round"
+            color="primary"
+          >
+            <ion-icon slot="icon-only" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-grid class="ion-margin">
+      <ion-row>
+        <ion-col style="color: white;">Variant</ion-col>
+        <ion-col style="color: white;">Stock</ion-col>
+        <ion-col style="color: white;">Harga</ion-col>
+        <ion-col style="color: white; text-align: center;">Qty</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let price of product_variant; index as n" style="border: 1px solid #8bd3a5">
+        <ion-col class="col-padding">{{ price.variant_name }}</ion-col>
+        <ion-col  class="col-padding">{{ price.stock }}</ion-col>
+        <ion-col>{{ price.harga | currency:'Rp ':'symbol':'3.0' }}</ion-col>
+        <ion-col  class="col-padding" style="text-align: center; font-size: 11pt !important;">
+          <!-- <ion-icon name="remove-circle" (click)="decrement(price)" class="red"></ion-icon> -->
+          <ion-button class="ion-no-padding" fill="outline" size="small" shape="round" color="primary" (click)="decrement(price)">
+            <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+          </ion-button>
+          <!-- <input type="submit" value="-" (click)="decrement(price)"> -->
+
+
+          <ion-input type="text" style="display: none;" value="{{ price.id_variant }}" [(ngModel)]="id_variant[n]"></ion-input>{{ price.quantity }}
+          <span id="var_id_{{ n }}" style="display: none;">{{ price.id_variant }}</span>
+          <ion-input type="text" style="display: none;" value="{{ price.quantity }}" [(ngModel)]="variant_qty[n]"></ion-input>
+
+          <!-- <ion-icon name="add-circle" (click)="increment(price)"></ion-icon> -->
+          <ion-button class="ion-no-padding" fill="outline" size="small" shape="round" color="primary" (click)="increment(price)">
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </ion-button>
+          <!-- <input type="submit" value="+" (click)="increment(price)"> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-row class="ion-padding">
+      <ion-col class="ion-no-padding">
+        <app-dropdown [open]="true" [title]="'Info Grosir'">
+          <ion-grid class="ion-no-margin">
+            <ion-row>
+              <ion-col style="color: white;">Variant</ion-col>
+              <ion-col style="color: white;">Awal QTY</ion-col>
+              <ion-col style="color: white;">Akhir QTY</ion-col>
+              <ion-col style="color: white;">Harga</ion-col>
+            </ion-row>
+            <ion-row *ngFor="let price of product_variant; index as i" style="border: 1px solid #8bd3a5">
+              <ion-col class="col-padding">{{ price.variant_name }}</ion-col>
+              <ion-col class="col-padding">{{ price.qty_awal }}</ion-col>
+              <ion-col class="col-padding">{{ price.qty_akhir }}</ion-col>
+              <ion-col class="col-padding">{{ price.harga_grosir | currency:'Rp ':'symbol':'3.0' }}</ion-col>
+            </ion-row>
+            <ion-input type="text" style="display: none;" value="{{ jumData }}" [(ngModel)]="jumVarian"></ion-input>
+          </ion-grid>
+        </app-dropdown>
+        <app-dropdown [open]="false" [title]="'Nutrition'">
+          <p class="text">
+            {{ nutrisi }}
+          </p>
+        </app-dropdown>
+        <app-dropdown [open]="false" [title]="'Reviews'">
+          <p class="text">
+            Apples are a good source of fiber and vitamin C. They also contain
+            polyphenols, which may have numerous health benefits.
+          </p>
+        </app-dropdown>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-padding-horizontal ion-no-border">
+  <ion-toolbar>
+    <ion-button
+      (click)="addToCart()"
+      class="action-button"
+      expand="block"
+      fill="solid"
+      color="primary"
+      type="button">
+      <div class="button-text">
+        <span>Add to Cart</span>
+        <ion-icon name="cart-outline"></ion-icon>
+      </div>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+

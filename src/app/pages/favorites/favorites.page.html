@@ -1,0 +1,55 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title> Favorites </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Favorites</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-list>
+          <ion-item-sliding *ngFor="let item of favorites">
+            <app-favorite-item [item]="item" (click)="productDetail()"></app-favorite-item>
+            <ion-item-options side="end">
+              <ion-item-option>
+                <ion-button
+                  class="trash-button"
+                  fill="clear"
+                  size="small"
+                  shape="round"
+                  color="danger"
+                >
+                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </ion-button>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-padding-horizontal ion-no-border">
+  <ion-toolbar>
+    <ion-button
+      class="action-button"
+      expand="block"
+      fill="solid"
+      color="primary"
+      type="button"
+      (click)="openModalFailed()"
+    >
+      <div class="button-text">
+        <span>Add to Cart</span>
+        <ion-icon name="cart-outline"></ion-icon>
+      </div>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

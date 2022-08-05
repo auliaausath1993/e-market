@@ -1,0 +1,10 @@
+{
+  "name": "Ionic Market Google Update",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

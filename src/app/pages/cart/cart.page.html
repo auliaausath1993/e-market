@@ -1,0 +1,85 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      My Cart
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">My Cart</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid class="ion-padding-horizontal" *ngIf="lazy_loading">
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding" *ngFor="let item of dataOrder; let idx = index">
+        <!-- <app-cart-item [item]="item"></app-cart-item> -->
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img [src]="item?.image">
+          </ion-thumbnail>
+          <ion-label class="ion-no-margin">
+            <div class="title-container">
+              <div>
+                <p>{{ item.prod_name }}</p>
+              </div>
+              <ion-button
+              fill="clear"
+              size="small"
+              shape="round"
+              color="medium"
+              class="small-button" (click)="delete(item.order_item_id)"
+              >
+              <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div class="buttons-container">
+            <ul>
+              <li>
+                <ion-button class="ion-no-padding" [disabled]="disable" fill="outline" size="small" shape="round" color="primary" (click)="decrease(item)">
+                  <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+                </ion-button>
+              </li>
+              <li>{{ item.qty }}</li>
+              <li>
+                <!-- <ion-button class="ion-no-padding" fill="outline" size="small" shape="round" color="primary" (click)="tambah(item.product_id,'qty2',item.num,x)"> -->
+                  <ion-button class="ion-no-padding" fill="outline" size="small" shape="round" color="primary" (click)="increase(item)">
+                    <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+                  </ion-button>
+                </li>
+              </ul>
+              <ion-text>{{ item.subtotal | currency:'Rp ':'symbol':'3.0' }}</ion-text>
+            </div>
+          </ion-label>
+        </ion-item>
+
+
+
+
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-padding-horizontal ion-no-border">
+  <ion-toolbar>
+    <ion-button
+    (click)="dropship()"
+    class="action-button"
+    expand="block"
+    fill="solid"
+    color="primary"
+    type="button"
+    >
+    <div class="button-text">
+      <span>Checkout Now</span>
+      <ion-note>{{ totalAmount | currency:'Rp ':'symbol':'3.0' }}</ion-note>
+    </div>
+  </ion-button>
+</ion-toolbar>
+</ion-footer>

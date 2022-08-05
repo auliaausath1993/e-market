@@ -1,0 +1,80 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Shop</ion-title>
+    <ion-buttons slot="end" (click)="cart()" style="margin-right: 11px;">
+      <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+      <ion-badge *ngIf="lazy_loading" color="danger" style="position: absolute; right: -4px; top: -1px;">{{ listCartTotal }}</ion-badge></ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Shop</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
+    <ion-slide>
+      <div class="slide">
+        <img
+        src="../../assets/images/slider/advance01.jpg"
+        />
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <img
+      src="../../assets/images/slider/advance02.jpg"
+      />
+    </ion-slide>
+
+    <ion-slide>
+      <img
+      src="../../assets/images/slider/advance03.jpg"
+      />
+    </ion-slide>
+  </ion-slides>
+
+  <br>
+  <ion-row>
+    <span style="margin-left: 21px; color: #53b175; font-size: larger;">Category</span>
+    <ion-slides [options]="groupConfig">
+      <ion-slide *ngFor="let item of listGrocery">
+        <ion-col class="ion-no-padding">
+          <app-product-group [group]="item"> </app-product-group>
+        </ion-col>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+
+  <ion-grid *ngIf="lazy_loading">
+    <span style="margin-left: 18px; color: #53b175; font-size: larger;">List Product</span>
+    <ion-row justify-content-center>
+      <ion-col *ngFor="let item of listProduct" size="6" class="mb-2">
+        <ion-card (tap)='showDiner(restaurant)' [ngStyle]="{'margin': '5px'}" class="h-100 d-flex flex-column">
+          <img class="img-wrapper" src="{{ item.img_medium }}" />
+          <ion-card-content class="mt-auto">
+            <ion-card-title class="fs-6">
+              <span style="color: #53b175;">{{ item.name_item }}</span><br>
+              <span style="color: #53b175;" *ngIf="item.harga != 0">{{ item.harga | currency:'Rp ':'symbol':'3.0' }}</span>
+              <span style="color: #53b175;" *ngIf="item.harga == 0">*Multi Variant</span>
+              <ion-button *ngIf="item.harga != 0" class="mt-2 ms-0 me-0 mb-0" size="small" expand="block" fill="solid" color="primary" type="button" (click)="addToCart(item)">
+                <div class="button-text">
+                  <span style="color: white;">Add to cart</span>
+                </div>
+              </ion-button>
+              <ion-button *ngIf="item.harga == 0" class="mt-2 ms-0 me-0 mb-0" size="small" expand="block" fill="solid" color="primary" type="button" (click)="productDetail(item.product_id, item.name_item)">
+                <div class="button-text">
+                  <span style="color: white;">Add to cart</span>
+                </div>
+              </ion-button>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
